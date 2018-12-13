@@ -1,3 +1,4 @@
+
 /* jshint esversion: 6 */
 
 // Solve the following prompts using recursion.
@@ -232,17 +233,55 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+  let result = 0;
   if(x === 0 && y === 0) {
     return NaN;
   }
-  if (Math.abs(y) > Math.abs(x)) {
+    
+    if(x >0 && y > 0){
+    if (y > x) {
     return x;
+    }
+    if (x - y < y) {
+    result = x - y
+    } else {
+    return modulo(x - y, y)
+    }
   }
-  if ((x - y) < y) {
-    return x - y
-  } else {
-    return modulo((x - y), y)
+
+
+
+  if(x > 0 && y < 0){
+    if (x + y < 0) {
+    return x;
+    }  else {
+    return modulo(x + y, y)
+    }
   }
+  if( x < 0 && y > 0){
+    if(x+y>0){
+      return x
+    }
+    
+    else {
+    return modulo(x + y, y);
+  }
+}
+
+
+  if(x < 0 && y < 0){
+    if(y<x){
+      return x;
+    }
+    if(x-y>y){
+    result = x-y;
+    } else {
+    return modulo(x-y,y);
+  }
+}
+
+  return result;
+
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
